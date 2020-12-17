@@ -1,0 +1,177 @@
+<!doctype html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>A-frame Project</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js"></script>
+    <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<div>
+                <a href="index.html" class="logo"><img src="images/AFrame.png" width="50" height="50">  </a>
+				<ul id="navigation">
+					<li class="selected">
+						<a href="index.html">Home</a>
+					</li>
+					<li class="menu">
+						<a href="Hand1.html">Hand 1</a>
+					</li>
+					<li class="menu">
+						<a href="Hand2.html">Hand 2</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="body" class="home">
+            
+            <a-scene embedded vr-mode-ui inspector>
+                <!-- Start of Handin1 -->
+                
+                <a-assets>
+                    <img id="floorTexture" src="Textures/bricksTex.jpg">
+                    <img id="floorNRM" src="Textures/bricksNRM.jpg">
+                    <img id="sky" src="Textures/clear-sunny-sky.jpg">
+                    <a-asset-item id="bed" src="3DModels/Single_Bed.gltf"></a-asset-item>
+                    <a-asset-item id="mosque" src="3DModels/Mosque.gltf"></a-asset-item>
+                    <a-asset-item id="car" src="3DModels/sportcar.017.glb"></a-asset-item>
+                </a-assets>
+                
+                <!-- Floor -->
+                <a-plane position="" ;="" rotation="-90 0 0" width="10000" height="10000" color="#FFFFFF" src="#floorTexture" repeat="5000 5000" normal-map="#floorNRM" normal-texture-repeat="5000 5000" material="" geometry="" shadow="cast: false">
+                </a-plane>
+                
+                <!-- sky 
+                <a-sky src="#sky"
+                   rotation="0 64 0">
+                </a-sky>-->
+                
+                <!-- lights -->
+                
+                <a-entity light="color: #BBB;
+                                 type: ambient;
+                                 intensity: .3">
+                </a-entity>
+                
+                <!-- this light is almost the same as ambient so doesn't make much sense in this scene but the handin said one of each light -->
+                <a-entity light="angle: 0; color: #ffffff; groundColor: #bbb; intensity: 0.16; type: hemisphere"></a-entity>
+                
+                <a-entity position="0 2 0" 
+                          light="type: directional;
+                                 castShadow: true;
+                                 color: #FFFFFF;
+                                 intensity: 1">
+                </a-entity>
+                
+                <a-entity light="angle: 45;
+                                 type: spot"
+                          position="0 3 -3"
+                          rotation="270 0 0">
+                </a-entity>
+                
+                <a-entity position="10 3 5" 
+                          light="distance: 15 ;  type:  point;  castShadow:  true;  intensity:  10"
+                          animation="property: light.intensity;
+                                 from: 0;
+                                 to: 1.5;
+                                 loop: true;
+                                 dir: alternate;
+                                 dur: 4000"
+                          >
+                </a-entity>
+                
+                <!-- user some parts are for handin2 -->
+                <a-entity id="cameraRig" position="0 0 5" look-controls wasd-controls rotation>
+                    <a-camera id="headAnchor" user-height="1.6">
+                        <a-entity cursor="fuse: true;
+                                          fuse-timeout: 500"
+                                  position="0 0 -1"
+                                  geometry="primitive: sphere;
+                                            radius: 0.005"
+                                  material="color: #000000;
+                                            shader: flat;
+                                            opacity: 0.5"
+                                  animation__fusing="property: scale;
+                                                     to: 3 3 3;
+                                                     dur: 500;
+                                                     startEvents: fusing"
+                                  animation__mouseleave="property: scale;
+                                                         startEvents: mouseleave;
+                                                         dur: 100; 
+                                                         to: 1 1 1 "
+                                  raycaster="objects: .clickable">
+                        </a-entity>
+                    </a-camera>
+                    <a-entity id="leftHand" mixin="touch" 
+                              teleport-controls="cameraRig: #cameraRig;
+                                                 teleportOrigin: #head;
+                                                 button: trigger"
+                              oculus-touch-controls="hand: left"
+                              physics-collider collision-filter
+                              velocity static-body super-hands>
+                    </a-entity>
+                </a-entity>
+                
+                <!-- animated car with texture -->
+                
+                <a-entity gltf-model="#car"
+                          position="0 .1 -3"
+                          scale=".01 .01 .01"
+                          animation="property: rotation;
+                                     to: 0 360 0;
+                                     loop: true;
+                                     dur: 10000;
+                                     easing: linear"
+                          shadow="cast: true;"
+                          shader="">
+                </a-entity>
+                
+                <!-- mosque -->
+                <a-entity data-brackets-id="21708"
+                          gltf-model="3DModels/Mosque.gltf"
+                          position="10 -0.2 5"
+                          shadow="receive: false">
+                </a-entity>
+                
+                <!-- end of handin1 -->
+                
+                <!-- gaze interaction -->
+                <a-box class="non-clickable" id="green" 
+                       position="-5 1 6.5"
+                       color="#00AA00"
+                       event-set__rescol="_event: click; material.color: #00AA00"
+                       event-set__clearclass="_event: click; class: not-clickable"
+                       event-set__tarclass="_event: click; _target: #grey; class: clickable">
+                </a-box>
+                
+                <a-box id="blue" position="-5 1 5" color="#0000AA">
+                </a-box>
+                
+                <a-box id="yellow" position="-5 1 3.5" color="#FFAA00">
+                </a-box>
+                
+                <a-box class="clickable" id="grey"
+                       position="-5 2.5 5"
+                       color="#AAAAAA"
+                       event-set__enter="_event: mouseenter; material.color: #FF0000"
+                       event-set__exit="_event: mouseleave; material.color: #AAAAAA"
+                       event-set__tarcol="_event: click; _target: #green; material.color: #00AAFF"
+                       event-set__clearclass="_event: click; class: not-clickable"
+                       event-set__tarclass="_event: click; _target: #green; class: clickable">
+                </a-box>
+
+            </a-scene>
+            
+		</div>
+	</div>
+</body>
+</html>
