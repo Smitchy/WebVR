@@ -43,11 +43,7 @@
                     <a-asset-item id="bed" src="3DModels/Single_Bed.gltf"></a-asset-item>
                     <a-asset-item id="mosque" src="3DModels/Mosque.gltf"></a-asset-item>
                     <a-asset-item id="car" src="3DModels/sportcar.017.glb"></a-asset-item>
-                    <a-mixin id="touch" physics-collider="" phase-shift="" collision-filter="collisionForces: false" static-body="shape: sphere; sphereRadius: 0.02" super-hands="colliderEvent: collisions;
-                              colliderEventProperty: els;
-                              colliderEndEvent: collisions;
-                              colliderEndEventProperty: clearedEls;">
-                    </a-mixin>
+                    
                 </a-assets>
                 
                 <!-- Floor -->
@@ -102,6 +98,11 @@
                               oculus-touch-controls="hand: left"
                               physics-collider collision-filter
                               velocity static-body super-hands>
+                        <a-mixin physics-collider="" phase-shift="" collision-filter="collisionForces: false" static-body="shape: sphere; sphereRadius: 0.02" super-hands="colliderEvent: collisions;
+                              colliderEventProperty: els;
+                              colliderEndEvent: collisions;
+                              colliderEndEventProperty: clearedEls;">
+                        </a-mixin>
                     </a-entity>
                     <a-entity id="rightHand" mixin="touch" 
                               teleport-controls="cameraRig: #cameraRig;
@@ -110,6 +111,11 @@
                               oculus-touch-controls="hand: right"
                               physics-collider collision-filter
                               velocity static-body super-hands>
+                        <a-mixin physics-collider="" phase-shift="" collision-filter="collisionForces: false" static-body="shape: sphere; sphereRadius: 0.02" super-hands="colliderEvent: collisions;
+                              colliderEventProperty: els;
+                              colliderEndEvent: collisions;
+                              colliderEndEventProperty: clearedEls;">
+                        </a-mixin>
                     </a-entity>
                 </a-entity>
                 
