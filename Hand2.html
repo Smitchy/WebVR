@@ -34,14 +34,12 @@
 		</div>
 		<div id="body" class="home">
             
-            <a-scene physics="gravity: -9.8; restitution: 0.7" embedded keyboard-shortcuts screenshot vr-mode-ui inspector device-orientation-permission-ui>
+            <a-scene antialias="true" physics="gravity: -9.8; restitution: 0.7" embedded keyboard-shortcuts screenshot vr-mode-ui inspector device-orientation-permission-ui>
                 
                 <a-assets>
                     <img id="floorTexture" src="Textures/bricksTex.jpg">
                     <img id="floorNRM" src="Textures/bricksNRM.jpg">
                     <img id="sky" src="Textures/clear-sunny-sky.jpg">
-                    <a-asset-item id="bed" src="3DModels/Single_Bed.gltf"></a-asset-item>
-                    <a-asset-item id="mosque" src="3DModels/Mosque.gltf"></a-asset-item>
                     <a-asset-item id="car" src="3DModels/sportcar.017.glb"></a-asset-item>
                     
                 </a-assets>
@@ -70,7 +68,7 @@
                 </a-entity>
                 
                 <!-- user -->
-                <a-entity id="cameraRig" position="0 0 5" look-controls wasd-controls >
+                <a-entity id="cameraRig" position="0 0 5" movement-controls>
                     <a-camera id="headAnchor" user-height="1.6">
                         <a-entity cursor="fuse: true;
                                           fuse-timeout: 500"
