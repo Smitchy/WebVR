@@ -94,8 +94,13 @@
                                                  teleportOrigin: #headAnchor;
                                                  button: trigger"
                               oculus-touch-controls="hand: left"
-                              physics-collider collision-filter
-                              velocity static-body super-hands>
+                              physics-collider phase-shift
+                              collision-filter="collisionForces: false"
+                              static-body="shape: sphere; sphereRadius: 0.02"
+                              super-hands="colliderEvent: collisions;
+                              colliderEventProperty: els;
+                              colliderEndEvent: collisions;
+                              colliderEndEventProperty: clearedEls;">
                     </a-entity>
                     <a-entity id="rightHand" 
                               teleport-controls="cameraRig: #cameraRig;
@@ -137,7 +142,7 @@
                        event-set__tarclass="_event: click; _target: #green; class: clickable">
                 </a-box>
                 
-                <a-box class="clickable" position="0 3 2" scale=".2 .2 .2" grabbable
+                <a-box position="0 3 2" scale=".2 .2 .2" grabbable
                        dynamic-body >
                 </a-box>
                 
