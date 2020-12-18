@@ -12,6 +12,21 @@
     <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
     <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
     <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
+    <script>
+        AFRAME.registerComponent('random-color', 
+        {
+            init: function()
+            {
+                var el = this.el
+                el.addEventListener('collide', function ()
+                {
+                    console.log("aframe component");
+                    var randomHex = '#' + Math.random().toString(16).substr(-6);
+                    el.setAttribute('material', 'color', randomHex);
+                });
+            }
+        });
+    </script>
 
 </head>
 <body>
@@ -142,8 +157,8 @@
                        event-set__tarclass="_event: click; _target: #green; class: clickable">
                 </a-box>
                 
-                <a-box position="0 3 2" scale=".2 .2 .2" grabbable
-                       dynamic-body >
+                <!-- controller grabbable cube -->
+                <a-box class="clickable" id="grabCube" material="color: #BBAABB" position="0 3 2" scale=".2 .2 .2" grabbable dynamic-body random-color>
                 </a-box>
                 
             </a-scene>
