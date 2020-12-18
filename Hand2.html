@@ -13,16 +13,38 @@
     <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
     <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
     <script>
-        AFRAME.registerComponent('random-color', 
+        AFRAME.registerComponent('random-color-collide', 
         {
             init: function()
             {
                 var el = this.el
                 el.addEventListener('collide', function ()
                 {
-                    console.log("aframe component");
                     var randomHex = '#' + Math.random().toString(16).substr(-6);
                     el.setAttribute('material', 'color', randomHex);
+                });
+            }
+        });
+        
+        AFRAME.registerComponent('change-anim', 
+        {
+            init: function()
+            {
+                var el = this.el
+                var yellow = document.querySelector('#yellow');
+                console.log(yellow);
+                var rotY = true;
+                
+                el.addEventListener('click', function ()
+                {
+                    console.log(rotY);
+                    if(rotY){
+                        rotY = false;
+                        yellow.setAttribute('animation', 'to', '360 0 0');
+                    }else{
+                        rotY = true;
+                        yellow.setAttribute('animation', 'to', '0 360 0');
+                    }
                 });
             }
         });
@@ -133,6 +155,8 @@
                 </a-entity>
                 
                 <!-- gaze interaction -->
+                
+                <!-- reset own color and sets grey to clickable -->
                 <a-box class="non-clickable" id="green" 
                        position="-5 1 6.5"
                        color="#00AA00"
@@ -141,14 +165,9 @@
                        event-set__tarclass="_event: click; _target: #grey; class: clickable">
                 </a-box>
                 
-                <a-box id="blue" position="-5 1 5" color="#0000AA">
-                </a-box>
-                
-                <a-box id="yellow" position="-5 1 3.5" color="#FFAA00">
-                </a-box>
-                
+                <!-- sets green box color to cyan and makes self unclickable -->
                 <a-box class="clickable" id="grey"
-                       position="-5 2.5 5"
+                       position="-5 2.5 6.5"
                        color="#AAAAAA"
                        event-set__enter="_event: mouseenter; material.color: #FF0000"
                        event-set__exit="_event: mouseleave; material.color: #AAAAAA"
@@ -157,9 +176,22 @@
                        event-set__tarclass="_event: click; _target: #green; class: clickable">
                 </a-box>
                 
-                <!-- controller grabbable cube -->
-                <a-box class="clickable" id="grabCube" material="color: #BBAABB" position="0 3 2" scale=".2 .2 .2" grabbable dynamic-body random-color>
+                <!-- changes what direction yellow rotates -->
+                <a-box id="blue" class="clickable" position="-5 1 5" color="#0000AA" change-anim>
                 </a-box>
+                
+                <a-box id="yellow" position="-5 1 3.5" color="#FFAA00"
+                       animation="property: rotation;
+                                         from: 0 0 0;
+                                         to: 0 360 0;
+                                         loop: true;
+                                         dur: 10000;
+                                         easing: linear">
+                </a-box>
+                
+                <!-- controller grabbable cube -->
+                <a-sphere id="magicBall" material="color: #BBAABB" position="0 3 2" radius=".2" grabbable dynamic-body random-color-collide>
+                </a-sphere>
                 
             </a-scene>
             
