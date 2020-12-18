@@ -102,7 +102,13 @@
                                                  teleportOrigin: #headAnchor;
                                                  button: trigger"
                               oculus-touch-controls="hand: right"
-                              super-hands>
+                              physics-collider phase-shift
+                              collision-filter="collisionForces: false"
+                              static-body="shape: sphere; sphereRadius: 0.02"
+                              super-hands="colliderEvent: collisions;
+                              colliderEventProperty: els;
+                              colliderEndEvent: collisions;
+                              colliderEndEventProperty: clearedEls;">
                     </a-entity>
                 </a-entity>
                 
@@ -131,12 +137,10 @@
                        event-set__tarclass="_event: click; _target: #green; class: clickable">
                 </a-box>
                 
-                <a-box class="clickable" position="0 3 2" scale=".2 .2 .2" grabbable dynamic-body >
+                <a-box class="clickable" position="0 3 2" scale=".2 .2 .2" grabbable
+                       dynamic-body >
                 </a-box>
                 
-                <a-sphere id="ball" color="#E47041" radius="0.2" position="0 0.5 -2" grabbable dynamic-body="linearDamping: 0.5; mass: 0.8">
-                </a-sphere>
-
             </a-scene>
             
 		</div>
