@@ -45,7 +45,7 @@
                 </a-assets>
                 
                 <!-- Floor -->
-                <a-plane position="" ;="" rotation="-90 0 0" width="10000" height="10000" color="#FFFFFF" src="#floorTexture" repeat="5000 5000" normal-map="#floorNRM" normal-texture-repeat="5000 5000" material="" geometry="" shadow="cast: false">
+                <a-plane static-body position="" ;="" rotation="-90 0 0" width="10000" height="10000" color="#FFFFFF" src="#floorTexture" repeat="5000 5000" normal-map="#floorNRM" normal-texture-repeat="5000 5000" material="" geometry="" shadow="cast: false">
                 </a-plane>
                 
                 <!-- sky -->
@@ -108,12 +108,13 @@
                                                  button: trigger"
                               oculus-touch-controls="hand: right"
                               physics-collider collision-filter
-                              velocity static-body super-hands>
-                        <a-mixin physics-collider="" phase-shift="" collision-filter="collisionForces: false" static-body="shape: sphere; sphereRadius: 0.02" super-hands="colliderEvent: collisions;
-                              colliderEventProperty: els;
-                              colliderEndEvent: collisions;
-                              colliderEndEventProperty: clearedEls;">
-                        </a-mixin>
+                              velocity static-body super-hands
+                              physics-collider="" phase-shift="" collision-filter="collisionForces: false" 
+                              static-body="shape: sphere; sphereRadius: 0.02" 
+                              super-hands="colliderEvent: collisions;
+                                           colliderEventProperty: els;
+                                           colliderEndEvent: collisions;
+                                           colliderEndEventProperty: clearedEls;">
                     </a-entity>
                 </a-entity>
                 
@@ -142,7 +143,7 @@
                        event-set__tarclass="_event: click; _target: #green; class: clickable">
                 </a-box>
                 
-                <a-box position="0 0.5 -2" scale=".2 .2 .2" grabbable="" dynamic-body="linearDamping: 0.5; mass: 0.8" bounce="" material="" geometry="" velocity="">
+                <a-box position="0 3 2" scale=".2 .2 .2" grabbable="" dynamic-body="linearDamping: 0.5; mass: 0.8" bounce="" material="" geometry="" velocity="">
                 </a-box>
 
             </a-scene>
