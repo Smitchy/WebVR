@@ -32,7 +32,6 @@
                         <img id="floorTexture" src="Textures/bricksTex.jpg">
                         <img id="floorNRM" src="Textures/bricksNRM.jpg">
                         <img id="sky" src="Textures/clear-sunny-sky.jpg">
-                        <a-asset-item id="bed" src="3DModels/Single_Bed.gltf"></a-asset-item>
                         <a-asset-item id="mosque" src="3DModels/Mosque.gltf"></a-asset-item>
                         <a-asset-item id="car" src="3DModels/sportcar.017.glb"></a-asset-item>
                     </a-assets>
@@ -70,7 +69,7 @@
                     </a-entity>
 
                     <a-entity position="10 3 5" 
-                              light="distance: 15 ;  type:  point;  castShadow:  true;  intensity:  10"
+                              light="distance: 15 ;  type:  point;  castShadow:  true;  intensity:  1"
                               animation="property: light.intensity;
                                      from: 0;
                                      to: 1.5;
@@ -99,12 +98,7 @@
                               shader="">
                     </a-entity>
 
-                    <!-- mosque -->
-                    <a-entity data-brackets-id="21708"
-                              gltf-model="3DModels/Mosque.gltf"
-                              position="10 -0.2 5"
-                              shadow="receive: false">
-                    </a-entity>
+                   
                 </a-scene>
         </div>
 	</div>
