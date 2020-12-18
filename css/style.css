@@ -44,6 +44,35 @@ a-scene{
     height: 80vh;
 }
 
+#body.home div.header a {
+	color: #000000;
+	display: block;
+	font-family: quicksand-bold-webfont;
+	font-size: 24px;
+	font-weight: normal;
+	height: 40px;
+	line-height: 24px;
+	margin: 0;
+	padding: 20px 0 0;
+	text-align: center;
+	text-transform: uppercase;
+	width: 100%;
+	z-index: 90;
+}
+
+#body.home p {
+	color: #7a6666;
+	display: block;
+	font-family: roboto-regular-webfont;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 24px;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	width: 100%;
+}
+
 /*----FONTS----*/
 
 @font-face {
