@@ -41,7 +41,11 @@
                     <img id="floorNRM" src="Textures/bricksNRM.jpg">
                     <img id="sky" src="Textures/clear-sunny-sky.jpg">
                     <a-asset-item id="car" src="3DModels/sportcar.017.glb"></a-asset-item>
-                    
+                    <a-mixin id="controller" physics-collider="" phase-shift="" collision-filter="collisionForces: false" static-body="shape: sphere; sphereRadius: 0.02" super-hands="colliderEvent: collisions;
+                              colliderEventProperty: els;
+                              colliderEndEvent: collisions;
+                              colliderEndEventProperty: clearedEls;">
+                    </a-mixin>
                 </a-assets>
                 
                 <!-- Floor -->
@@ -89,32 +93,21 @@
                                   raycaster="objects: .clickable">
                         </a-entity>
                     </a-camera>
-                    <a-entity id="leftHand" mixin="touch" 
+                    <a-entity id="leftHand" mixin="controller" 
                               teleport-controls="cameraRig: #cameraRig;
-                                                 teleportOrigin: #head;
+                                                 teleportOrigin: #headAnchor;
                                                  button: trigger"
                               oculus-touch-controls="hand: left"
                               physics-collider collision-filter
                               velocity static-body super-hands>
-                        <a-mixin physics-collider="" phase-shift="" collision-filter="collisionForces: false" static-body="shape: sphere; sphereRadius: 0.02" super-hands="colliderEvent: collisions;
-                              colliderEventProperty: els;
-                              colliderEndEvent: collisions;
-                              colliderEndEventProperty: clearedEls;">
-                        </a-mixin>
                     </a-entity>
-                    <a-entity id="rightHand" mixin="touch" 
+                    <a-entity id="rightHand" mixin="controller" 
                               teleport-controls="cameraRig: #cameraRig;
-                                                 teleportOrigin: #head;
+                                                 teleportOrigin: #headAnchor;
                                                  button: trigger"
                               oculus-touch-controls="hand: right"
                               physics-collider collision-filter
-                              velocity static-body super-hands
-                              physics-collider="" phase-shift="" collision-filter="collisionForces: false" 
-                              static-body="shape: sphere; sphereRadius: 0.02" 
-                              super-hands="colliderEvent: collisions;
-                                           colliderEventProperty: els;
-                                           colliderEndEvent: collisions;
-                                           colliderEndEventProperty: clearedEls;">
+                              velocity static-body super-hands>
                     </a-entity>
                 </a-entity>
                 
@@ -143,7 +136,7 @@
                        event-set__tarclass="_event: click; _target: #green; class: clickable">
                 </a-box>
                 
-                <a-box position="0 3 2" scale=".2 .2 .2" grabbable dynamic-body >
+                <a-box position="0 3 2" scale=".2 .2 .2" grabbable dynamic-body velocity >
                 </a-box>
                 
 
