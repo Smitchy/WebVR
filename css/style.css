@@ -20,11 +20,18 @@ a:active {
 img {
 	border: none;
 }
+
 a-scene{
     display: block;
     position: relative;
     height: 100%;
     width: 100%;
+}
+
+iframe {
+    width: 80vW;
+    height: 80vh;
+    padding-left: 10vw
 }
 
 #body {
@@ -69,7 +76,7 @@ a-scene{
 	line-height: 24px;
 	margin: 0;
 	padding: 0;
-	text-align: left;
+	text-align: center;
 	width: 100%;
 }
 
